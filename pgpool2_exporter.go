@@ -282,7 +282,7 @@ func queryNamespaceMapping(ch chan<- prometheus.Metric, db *sql.DB, namespace st
 				return []error{}, errors.New(fmt.Sprintln("Error retrieving rows:", namespace, err))
 			}
 			frontend_total++
-			// Loop over column names to find currently connected backend database 
+			// Loop over column names to find currently connected backend database
 			for idx, columnName := range columnNames {
 				if columnName == "database" {
 					if valueDatabase, _ := dbToString(columnData[idx]); len(valueDatabase) != 0 {
@@ -425,7 +425,7 @@ func dbToString(t interface{}) (string, bool) {
 		return v, true
 	case bool:
 		if v {
-			return "true", true 
+			return "true", true
 		}
 		return "false", true
 	default:
@@ -665,7 +665,7 @@ func main() {
 	}
 	pgpoolSemver = v
 
-	log.Infof("Starting pgpool2_exporter %s for %s", version.Info(), dsn)
+//	log.Infof("Starting pgpool2_exporter %s for %s", version.Info(), dsn)
 	log.Infoln("Listening on", *listenAddress)
 
 	http.Handle(*metricsPath, promhttp.Handler())
